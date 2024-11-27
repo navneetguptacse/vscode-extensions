@@ -1,6 +1,5 @@
 davidanson.vscode-markdownlint
 dsznajder.es7-react-js-snippets
-eamodio.gitlens
 esbenp.prettier-vscode
 formulahendry.code-runner
 formulahendry.vscode-mysql
@@ -8,6 +7,7 @@ github.copilot
 github.copilot-chat
 github.github-vscode-theme
 github.vscode-pull-request-github
+ms-azuretools.vscode-docker
 ms-dotnettools.vscode-dotnet-runtime
 ms-vscode.cmake-tools
 ms-vscode.cpptools
