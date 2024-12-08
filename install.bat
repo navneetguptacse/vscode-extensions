@@ -1,24 +1,33 @@
 @echo off
-SETLOCAL ENABLEDELAYEDEXPANSION
+cls
+title Visual Studio Code Extensions Installer
 
-REM Path to your extensions.txt file
-set "extFile=extensions.txt"
-
-REM Check if the file exists
-if not exist "!extFile!" (
-    echo File not found: !extFile!
-    exit /b 1
+:: Check if VS Code is installed
+where code >nul 2>nul
+if %errorlevel% neq 0 (
+    echo VS Code is not installed. Please install Visual Studio Code first.
+    pause
+    exit /b
 )
 
-REM Initialize a counter
-set count=0
+:: Ask for confirmation before starting the installation
+set /p confirm= Are you sure you want to install the extensions listed in extensions.txt? [Y/N]
 
-REM Read the file and install each extension
-for /F "delims=" %%i in (!extFile!) do (
+if /i not "%confirm%"=="Y" (
+    echo Installation cancelled.
+    pause
+    exit /b
+)
+
+:: Loop through each extension and install it
+for /f "tokens=*" %%i in (extensions.txt) do (
     echo Installing %%i...
     code --install-extension %%i
-    set /a count+=1
+    echo %%i installation complete.
 )
 
-echo All !count! extensions installed successfully.
-ENDLOCAL
+:: Ensure the final message is displayed after all extensions are installed
+echo All extensions installed.
+echo Press any key to exit.
+pause
+exit /b
